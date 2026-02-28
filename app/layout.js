@@ -1,14 +1,19 @@
-import './globals.css';
-
-export const metadata = {
-  title: 'JS E-Commerce Store',
-  description: 'Next.js Shopping App',
-};
+// app/layout.js
+"use client";
+import { SessionProvider } from "next-auth/react";
+import { CartProvider } from "@/context/CartContext";
+import "./globals.css";
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="bg-gray-50 text-slate-900">{children}</body>
+      <body>
+        <SessionProvider>
+          <CartProvider>
+            {children}
+          </CartProvider>
+        </SessionProvider>
+      </body>
     </html>
   );
 }
